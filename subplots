@@ -1,0 +1,23 @@
+fig, axes = plt.subplots()
+creates one single figure chart
+
+fig, axes = plt.subplots(nrows=2, ncols=3)
+This creates a figure with (2) rows of charts and (3) columns of charts
+
+Make a single chart with two charts inside the single chart
+
+x = np.linspace(0, 2*np.pi, 400)
+y = np.sin(x**2)
+# Create a figure
+fig, ax =plt.subplots()
+
+# Creates a subplot of a scatter plot
+ax.plot(x, y)
+ax.set_title('Simple plot')
+
+#Now less make a single row, only one chart that is two charts in one
+# line chart on left and scatter plot on right sharing Y axis
+ax1,ax2=fig.subplots(1,2,sharey=True)
+ax1.plot(x,y)
+ax1.set_title('Sharing Y Axis')
+ax2.scatter(x,y)
