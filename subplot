@@ -1,0 +1,14 @@
+What is a subplot() and how to set up a subplot. Not the same as subplots()
+
+A subplot() function will create only a single subplot axes at a specified grid position.
+First create a figure
+fig = plt.figure()
+ax1 = plt.subplot(231)
+ax2 = plt.subplot(232)
+ax3 = plt.subplot(233)
+ax4 = plt.subplot(234)
+ax5 = plt.subplot(235)
+ax6 = plt.subplot(236)
+
+subplot(231) is creating (2) rows of charts with (3) columns of charts, in position (1) of the figure
+if you created ax7 =plt.subplot(237) the chart would be off outside the subplot columns and rows and will not show up.
