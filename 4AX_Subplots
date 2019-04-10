@@ -1,0 +1,66 @@
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+This is a temporary script file.
+"""
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.ticker as mticker
+""" Stops x axis ticker lable overlapping"""
+#mylocat= mticker.MultipleLocator(5)
+
+fp=r'C:\Users\......csv'
+
+data =pd.read_csv(fp, sep=',',encoding='latin-1')
+br = data[data['submarket'] =='BATON ROUGE']
+mob = data[data['submarket'] == 'MOBILE']
+bir = data[data['submarket'] == 'BIRMINGHAM']
+
+#Setup figure and size
+plt.rcParams['figure.figsize']=(12,10)
+tick_space = 5
+
+#Creates a figure for 4 axes with a single column
+fig,(ax1,ax2,ax3,ax4)=plt.subplots(4,1,sharey=False)
+
+
+ax1.bar(br.date,br.attdl,color='darkblue',zorder=1,label=r"$DL-Tput$")
+ax1.plot(br.date,br.attul,color='cyan',zorder=2,lw=1,label=r"$UL-Tput$",\
+         marker='D',markevery=2)
+legend = ax1.legend(loc='upper left', shadow = True, fontsize=10)
+ax1.xaxis.set_tick_params(labelcolor = 'darkblue',pad=2,labelsize=9,labeltop=False,\
+                          labelbottom=True, rotation=45)
+ax1.xaxis.set_major_locator(mticker.MultipleLocator(tick_space))
+ax1.set_xlabel('ATT Ookla Speed')
+
+ax2.bar(br.date,br.tmodl,color='fuchsia',zorder=1,label=r"$DL-Tput$")
+ax2.plot(br.date,br.tmoul,color='cyan',zorder=2,lw=1,label=r"$UL-Tput$",\
+         marker='D',markevery=2)
+legend2 = ax2.legend(loc='upper left', shadow = True, fontsize=10)
+ax2.xaxis.set_tick_params(labelcolor = 'fuchsia',pad=2,labelsize=9,labeltop=False,\
+                          labelbottom=True, rotation=45)
+ax2.xaxis.set_major_locator(mticker.MultipleLocator(tick_space))
+ax2.set_xlabel('TMO Ookla Speed')
+
+ax3.bar(br.date,br.verdl,color='red',zorder=1,label=r"$DL-Tput$")
+ax3.plot(br.date,br.verul,color='cyan',zorder=2,lw=1,label=r"$UL-Tput$",\
+         marker='D',markevery=2)
+legend3 = ax3.legend(loc='upper left', shadow = True, fontsize=10)
+ax3.xaxis.set_tick_params(labelcolor = 'red',pad=2,labelsize=9,labeltop=False,\
+                          labelbottom=True, rotation=45)
+ax3.xaxis.set_major_locator(mticker.MultipleLocator(tick_space))
+ax3.set_xlabel('Verizon Ookla Speed')
+
+ax4.bar(br.date,br.sprintdl,color='yellow',zorder=1,label=r"$DL-Tput$")
+ax4.plot(br.date,br.sprintul,color='cyan',zorder=2,lw=1,label=r"$UL-Tput$",\
+         marker='D',markevery=2)
+legend4 = ax4.legend(loc='upper left', shadow = True, fontsize=10)
+ax4.xaxis.set_tick_params(labelcolor = 'red',pad=2,labelsize=9,labeltop=False,\
+                          labelbottom=True, rotation=45)
+ax4.xaxis.set_major_locator(mticker.MultipleLocator(tick_space))
+ax4.set_xlabel('Sprint Ookla Speed')
+
+plt.tight_layout()
